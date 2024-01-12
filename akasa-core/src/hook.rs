@@ -1,5 +1,5 @@
 use std::collections::VecDeque;
-use std::future::Future;
+use std::future::{self, Future};
 use std::io;
 use std::mem::{self, MaybeUninit};
 use std::net::SocketAddr;
@@ -43,7 +43,7 @@ pub trait Hook: Send {
         _peer: SocketAddr,
         _connect: &v5::Connect,
     ) -> impl Future<Output = HookResult<HookConnectCode>> + Send {
-        async { Ok(HookConnectCode::Success) }
+        future::ready(Ok(HookConnectCode::Success))
     }
 
     fn v5_after_connect(
@@ -51,7 +51,7 @@ pub trait Hook: Send {
         _session: &SessionV5,
         _session_present: bool,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 
     fn v5_before_publish(
@@ -62,7 +62,7 @@ pub trait Hook: Send {
         _publish: &mut v5::Publish,
         _changed: &mut bool,
     ) -> impl Future<Output = HookResult<HookPublishCode>> + Send {
-        async { Ok(HookPublishCode::Success) }
+        future::ready(Ok(HookPublishCode::Success))
     }
 
     fn v5_after_publish(
@@ -73,7 +73,7 @@ pub trait Hook: Send {
         _publish: &v5::Publish,
         _changed: bool,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 
     fn v5_before_subscribe(
@@ -84,7 +84,7 @@ pub trait Hook: Send {
         _subscribe: &mut v5::Subscribe,
         _changed: &mut bool,
     ) -> impl Future<Output = HookResult<HookSubscribeCode>> + Send {
-        async { Ok(HookSubscribeCode::Success) }
+        future::ready(Ok(HookSubscribeCode::Success))
     }
 
     fn v5_after_subscribe(
@@ -96,7 +96,7 @@ pub trait Hook: Send {
         _changed: bool,
         _codes: Option<Vec<v5::SubscribeReasonCode>>,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 
     fn v5_before_unsubscribe(
@@ -107,7 +107,7 @@ pub trait Hook: Send {
         _unsubscribe: &mut v5::Unsubscribe,
         _changed: &mut bool,
     ) -> impl Future<Output = HookResult<HookUnsubscribeCode>> + Send {
-        async { Ok(HookUnsubscribeCode::Success) }
+        future::ready(Ok(HookUnsubscribeCode::Success))
     }
 
     fn v5_after_unsubscribe(
@@ -118,7 +118,7 @@ pub trait Hook: Send {
         _unsubscribe: &v5::Unsubscribe,
         _changed: bool,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 
     fn v3_before_connect(
@@ -126,7 +126,7 @@ pub trait Hook: Send {
         _peer: SocketAddr,
         _connect: &v3::Connect,
     ) -> impl Future<Output = HookResult<HookConnectCode>> + Send {
-        async { Ok(HookConnectCode::Success) }
+        future::ready(Ok(HookConnectCode::Success))
     }
 
     fn v3_after_connect(
@@ -134,7 +134,7 @@ pub trait Hook: Send {
         _session: &SessionV3,
         _session_present: bool,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 
     fn v3_before_publish(
@@ -145,7 +145,7 @@ pub trait Hook: Send {
         _publish: &mut v3::Publish,
         _changed: &mut bool,
     ) -> impl Future<Output = HookResult<HookPublishCode>> + Send {
-        async { Ok(HookPublishCode::Success) }
+        future::ready(Ok(HookPublishCode::Success))
     }
 
     fn v3_after_publish(
@@ -156,7 +156,7 @@ pub trait Hook: Send {
         _publish: &v3::Publish,
         _changed: bool,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 
     fn v3_before_subscribe(
@@ -167,7 +167,7 @@ pub trait Hook: Send {
         _subscribe: &mut v3::Subscribe,
         _changed: &mut bool,
     ) -> impl Future<Output = HookResult<HookSubscribeCode>> + Send {
-        async { Ok(HookSubscribeCode::Success) }
+        future::ready(Ok(HookSubscribeCode::Success))
     }
 
     fn v3_after_subscribe(
@@ -179,7 +179,7 @@ pub trait Hook: Send {
         _changed: bool,
         _codes: Option<Vec<v3::SubscribeReturnCode>>,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 
     fn v3_before_unsubscribe(
@@ -190,7 +190,7 @@ pub trait Hook: Send {
         _unsubscribe: &mut v3::Unsubscribe,
         _changed: &mut bool,
     ) -> impl Future<Output = HookResult<HookUnsubscribeCode>> + Send {
-        async { Ok(HookUnsubscribeCode::Success) }
+        future::ready(Ok(HookUnsubscribeCode::Success))
     }
 
     fn v3_after_unsubscribe(
@@ -201,7 +201,7 @@ pub trait Hook: Send {
         _unsubscribe: &v3::Unsubscribe,
         _changed: bool,
     ) -> impl Future<Output = HookResult<Vec<HookAction>>> + Send {
-        async { Ok(Vec::new()) }
+        future::ready(Ok(Vec::new()))
     }
 }
 
