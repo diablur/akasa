@@ -6,40 +6,39 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bytes = "1.2.1"
-dashmap = "5.4.0"
-flume = { version = "0.10", features = ["async"] }
-futures-io = "0.3.25"
-futures-lite = "1.12.0"
-hashbrown = "0.13.1"
+bytes = "1.5"
+dashmap = "5.5"
+flume = { version = "0.11", features = ["async"] }
+futures-io = "0.3"
+futures-lite = "2.2"
+hashbrown = "0.14"
 hex = { version = "0.4", features = ["serde"] }
-log = "0.4.17"
-mqtt-proto = { git = "https://github.com/akasamq/mqtt-proto.git", branch = "master" }
-num_cpus = "1.14.0"
-parking_lot = "0.12.1"
-cfg-if = "1.0.0"
+log = "0.4"
+mqtt-proto = { git = "https://github.com/diablur/mqtt-proto.git", branch = "crates" }
+num_cpus = "1.16"
+parking_lot = "0.12"
+cfg-if = "1"
 # rhai = { version = "1.11.0", features = ["decimal"] }
 # jsonwebtoken = "8.2.0"
 # jwt-simple = "0.11.2"
-serde = { version = "1.0.147", features = ["derive"] }
-thiserror = "1.0.38"
-tokio = { version = "1.23.0", features = ["full"] }
-tokio-tungstenite = "0.20.1"
-tokio-openssl = "0.6.3"
-uuid = { version = "1.2.2", features = ["v4"] }
-rand = { version = "0.8.5", features = ["getrandom"] }
-ahash = "0.8.3"
-scram = "0.6.0"
-pin-project-lite = "0.2.9"
-futures-sink = "0.3.26"
-futures-util = "0.3.26"
-async-trait = "0.1.64"
-base64 = "0.21.0"
-ring = "0.16"
-crc32c = "0.6.3"
-openssl = { version = "0.10.51", features = ["vendored"] }
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
+tokio = { version = "1.35", features = ["full"] }
+tokio-tungstenite = "0.21"
+tokio-openssl = "0.6"
+uuid = { version = "1.6", features = ["v4"] }
+rand = { version = "0.8", features = ["getrandom"] }
+ahash = "0.8"
+scram = "0.6"
+pin-project-lite = "0.2"
+futures-sink = "0.3"
+futures-util = "0.3"
+base64 = "0.21"
+ring = "0.17"
+crc32c = "0.6"
+openssl = { version = "0.10", features = ["vendored"] }
 
 [dev-dependencies]
-futures-sink = "0.3.26"
-tokio-util = "0.7.7"
-env_logger = "0.9.3"
+futures-sink = "0.3"
+tokio-util = "0.7"
+env_logger = "0.10"

@@ -7,7 +7,6 @@ mod v500;
 use std::sync::Arc;
 use std::time::Duration;
 
-use async_trait::async_trait;
 use bytes::Bytes;
 use mqtt_proto::v5::*;
 use mqtt_proto::*;
@@ -15,7 +14,6 @@ use tokio::{sync::mpsc::error::TryRecvError, time::sleep};
 
 use crate::tests::utils::MockConnControl;
 
-#[async_trait]
 trait ClientV5 {
     fn try_read_packet(&mut self) -> Result<Packet, TryRecvError>;
     async fn read_packet(&mut self) -> Packet;
@@ -91,7 +89,6 @@ trait ClientV5 {
     async fn recv_unsuback(&mut self, pid: u16, codes: Vec<UnsubscribeReasonCode>);
 }
 
-#[async_trait]
 impl ClientV5 for MockConnControl {
     fn try_read_packet(&mut self) -> Result<Packet, TryRecvError> {
         self.chan_out.try_recv().map(|data| {
